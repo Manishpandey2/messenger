@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Manish — Sign In</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<!-- ═══ NAVBAR ═══ -->
+<%- include("../components/navbar") %>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item"><span class="ticker-dot">●</span>Is remote work better than office?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Should AI replace teachers?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Is social media destroying society?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Best programming language in 2025?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Does money buy happiness?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Are electric cars the future?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Should college be free for all?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Is remote work better than office?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Should AI replace teachers?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Is social media destroying society?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Best programming language in 2025?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Does money buy happiness?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Are electric cars the future?</span>
+    <span class="ticker-item"><span class="ticker-dot">●</span>Should college be free for all?</span>
+  </div>
+</div>
+
+<!-- ═══ PAGE ═══ -->
+<div class="page">
+
+  <!-- LEFT — FORM -->
+  <div class="panel-left">
+    <div class="form-card">
+      <div class="form-header">
+        <h2 class="form-title">Welcome <span>back.</span></h2>
+        <p class="form-sub">New to Manish? <a href="manish-register.html">Create a free account</a></p>
+      </div>
+
+      <!-- OAuth -->
+      <div class="oauth-row">
+        <button class="oauth-btn">
+          <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          Google
+        </button>
+        <button class="oauth-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.419 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </button>
+      </div>
+
+      <div class="divider">or with email</div>
+
+      <!-- error banner -->
+      <div class="banner" id="banner">
+        <span class="banner-icon">⚠</span>
+        <span id="banner-msg">Invalid email or password. Please try again.</span>
+      </div>
+
+      <form id="form" novalidate>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="you@email.com" autocomplete="email"/>
+          <span class="err-msg" id="email-err"></span>
+        </div>
+
+        <div class="field">
+          <div class="field-row">
+            <label for="pw">Password</label>
+            <a href="#" class="forgot" id="forgotLink">Forgot password?</a>
+          </div>
+          <div class="pw-wrap">
+            <input type="password" id="pw" placeholder="Your password" autocomplete="current-password"/>
+            <button type="button" class="eye" id="eye1" aria-label="Show password">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="err-msg" id="pw-err"></span>
+        </div>
+
+        <label class="remember">
+          <input type="checkbox" id="remember" checked/>
+          Keep me signed in
+        </label>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+          Sign in to Manish →
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- RIGHT — INFO PANEL -->
+  <div class="panel-right">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> Live right now</div>
+
+    <h1 class="panel-heading">
+      The world is<br>
+      <span class="hl">talking.</span><br>
+      <span class="dim">Are you?</span>
+    </h1>
+
+    <p class="panel-desc">
+      Jump back into the conversation. Thousands of opinions are being shared right now — your perspective is waiting to be heard.
+    </p>
+
+    <div class="trending-label">🔥 Trending questions today</div>
+
+    <div class="trend-list">
+      <div class="trend-item">
+        <div class="trend-rank gold">1</div>
+        <div class="trend-body">
+          <div class="trend-q">Is coding still a valuable skill in the age of AI?</div>
+          <div class="trend-meta">💬 312 opinions · 🕐 2 hrs ago</div>
+        </div>
+        <span class="trend-badge badge-tech">Tech</span>
+      </div>
+      <div class="trend-item">
+        <div class="trend-rank silver">2</div>
+        <div class="trend-body">
+          <div class="trend-q">Should arranged marriages still be practiced today?</div>
+          <div class="trend-meta">💬 217 opinions · 🕐 5 hrs ago</div>
+        </div>
+        <span class="trend-badge badge-soc">Society</span>
+      </div>
+      <div class="trend-item">
+        <div class="trend-rank bronze">3</div>
+        <div class="trend-body">
+          <div class="trend-q">Startup vs corporate — which would you choose?</div>
+          <div class="trend-meta">💬 139 opinions · 🕐 8 hrs ago</div>
+        </div>
+        <span class="trend-badge badge-car">Career</span>
+      </div>
+      <div class="trend-item">
+        <div class="trend-rank" style="color:var(--hint)">4</div>
+        <div class="trend-body">
+          <div class="trend-q">Should voting be made compulsory in democracies?</div>
+          <div class="trend-meta">💬 98 opinions · 🕐 11 hrs ago</div>
+        </div>
+        <span class="trend-badge badge-pol">Politics</span>
+      </div>
+    </div>
+
+    <div class="activity">
+      <div class="avatars">
+        <span class="av-a">RK</span>
+        <span class="av-b">SM</span>
+        <span class="av-c">AP</span>
+        <span class="av-d">NG</span>
+      </div>
+      <div class="activity-text">
+        <strong>2,400+ members</strong> shared their opinion<br>in the last hour alone.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Forgot password modal (faux) -->
+<div id="forgot-modal" style="display:none;position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);align-items:center;justify-content:center">
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem 2.25rem;width:90%;max-width:380px;animation:fadeUp 0.3s ease">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:0.4rem">Reset password</h3>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6">Enter your email and we'll send you a reset link.</p>
+    <div class="field">
+      <label for="reset-email">Email address</label>
+      <input type="email" id="reset-email" placeholder="you@email.com"/>
+    </div>
+    <div style="display:flex;gap:0.75rem;margin-top:1rem">
+      <button id="modal-cancel" style="flex:1;background:transparent;border:1px solid var(--border);border-radius:10px;padding:0.7rem;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:600;color:var(--muted);cursor:pointer;transition:border-color 0.2s">Cancel</button>
+      <button id="modal-send" style="flex:2;background:var(--accent);border:none;border-radius:10px;padding:0.7rem;font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;color:#0d0d0f;cursor:pointer;transition:background 0.2s">Send reset link</button>
+    </div>
+    <p id="modal-success" style="display:none;font-size:0.8rem;color:var(--success);margin-top:0.85rem;text-align:center">✓ Reset link sent! Check your inbox.</p>
+  </div>
+</div>
+
+<script>
+// hamburger
+const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+hbg.addEventListener('click',()=>{hbg.classList.toggle('open');mob.classList.toggle('open')});
+
+// eye toggle
+const eye1=document.getElementById('eye1'),pwInp=document.getElementById('pw');
+eye1.addEventListener('click',()=>{
+  pwInp.type=pwInp.type==='password'?'text':'password';
+  eye1.style.color=pwInp.type==='text'?'var(--accent)':'var(--hint)';
+});
+
+// forgot password modal
+const modal=document.getElementById('forgot-modal');
+document.getElementById('forgotLink').addEventListener('click',e=>{
+  e.preventDefault();modal.style.display='flex';
+});
+document.getElementById('modal-cancel').addEventListener('click',()=>{
+  modal.style.display='none';
+  document.getElementById('modal-success').style.display='none';
+  document.getElementById('reset-email').value='';
+});
+modal.addEventListener('click',e=>{if(e.target===modal){modal.style.display='none'}});
+document.getElementById('modal-send').addEventListener('click',()=>{
+  const v=document.getElementById('reset-email').value;
+  const succ=document.getElementById('modal-success');
+  if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){
+    succ.style.display='block';
+    document.getElementById('modal-send').textContent='Sent ✓';
+    document.getElementById('modal-send').style.background='var(--success)';
+    document.getElementById('modal-send').style.color='#fff';
+    setTimeout(()=>{
+      modal.style.display='none';
+      succ.style.display='none';
+      document.getElementById('modal-send').textContent='Send reset link';
+      document.getElementById('modal-send').style.background='var(--accent)';
+      document.getElementById('modal-send').style.color='#0d0d0f';
+      document.getElementById('reset-email').value='';
+    },2200);
+  }else{
+    document.getElementById('reset-email').style.borderColor='var(--danger)';
+    setTimeout(()=>document.getElementById('reset-email').style.borderColor='',1500);
+  }
+});
+
+// form submit
+document.getElementById('form').addEventListener('submit',function(e){
+  e.preventDefault();
+  const email=document.getElementById('email');
+  const pw=document.getElementById('pw');
+  const emailErr=document.getElementById('email-err');
+  const pwErr=document.getElementById('pw-err');
+  const banner=document.getElementById('banner');
+  let ok=true;
+
+  // reset
+  emailErr.textContent='';pwErr.textContent='';
+  email.classList.remove('err');pw.classList.remove('err');
+  banner.classList.remove('show');
+
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
+    email.classList.add('err');emailErr.textContent='Enter a valid email address.';ok=false;
+  }
+  if(!pw.value){
+    pw.classList.add('err');pwErr.textContent='Password is required.';ok=false;
+  }
+
+  if(ok){
+    const btn=document.getElementById('submitBtn');
+    btn.disabled=true;btn.textContent='Signing in…';
+
+    // simulate auth check
+    setTimeout(()=>{
+      // demo: treat test@manish.com / password123 as valid
+      const validEmail='test@manish.com', validPw='password123';
+      if(email.value===validEmail && pw.value===validPw){
+        btn.textContent='✓ Welcome back!';
+        btn.style.background='var(--success)';btn.style.color='#fff';
+      } else {
+        banner.classList.add('show');
+        btn.textContent='Sign in to Manish →';
+        btn.disabled=false;
+        email.classList.add('err');pw.classList.add('err');
+      }
+    },1400);
+  }
+});
+</script>
+</body>
+</html>

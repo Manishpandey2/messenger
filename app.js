@@ -7,13 +7,15 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   res.render("home");
 });
-
-app.get("/about", (req, res) => {
-  const name = "manish";
-  const address = "sankhuwasabha";
-  res.render("about", { data: name, address: address });
+app.get("/register", (req, res) => {
+  res.render("auth/register");
+});
+app.get("/login", (req, res) => {
+  res.render("auth/login");
 });
 
-app.listen(3000, () => {
-  console.log("project has started at port 3000");
+app.use(express.static("public/css/"));
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`project has started at port ${PORT}`);
 });
