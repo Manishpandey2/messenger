@@ -19,6 +19,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.users = require("./userModel")(sequelize, DataTypes);
+
 db.sequelize.sync({ force: false }).then(() => {
   console.log("sync done");
 });
