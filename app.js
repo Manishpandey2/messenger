@@ -15,9 +15,22 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("auth/register");
 });
-app.post("/register", (req, res) => {
-  console.log(req.body);
-  res.json("message: data submitted ");
+app.post("/register", async (req, res) => {
+  try {
+    const { firstName, lastName, userName, email, password } = req.body;
+
+    const user = await db.users.create({
+      firstName,
+      lastName,
+      userName,
+      email,
+      password,
+    });
+    res.status(201).json({ messsage: "User Created Successfully", user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
 });
 app.get("/login", (req, res) => {
   res.render("auth/login");
