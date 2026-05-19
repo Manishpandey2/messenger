@@ -25,6 +25,16 @@ app.post("/register", async (req, res) => {
         message: "All the fields are required",
       });
     }
+    const existtingUser = await db.users.findOne({
+      where: {
+        email: email,
+      },
+    });
+    if (existtingUser) {
+      return res.status(400).json({
+        message: "Email address already exists",
+      });
+    }
     const user = await db.users.create({
       firstName,
       lastName,
