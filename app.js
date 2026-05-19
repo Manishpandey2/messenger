@@ -20,7 +20,11 @@ app.get("/register", (req, res) => {
 app.post("/register", async (req, res) => {
   try {
     const { firstName, lastName, userName, email, password } = req.body;
-
+    if (!firstName || !lastName || !userName || !email || !password) {
+      return res.status(400).json({
+        message: "All the fields are required",
+      });
+    }
     const user = await db.users.create({
       firstName,
       lastName,
