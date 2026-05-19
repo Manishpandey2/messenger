@@ -228,47 +228,39 @@ document.getElementById('modal-send').addEventListener('click',()=>{
 });
 
 // form submit
-document.getElementById('form').addEventListener('submit',function(e){
-  // e.preventDefault();
-  const email=document.getElementById('email');
-  const pw=document.getElementById('pw');
-  const emailErr=document.getElementById('email-err');
-  const pwErr=document.getElementById('pw-err');
-  const banner=document.getElementById('banner');
-  let ok=true;
+document.getElementById('form').addEventListener('submit', async function(e) {
+  e.preventDefault();
 
-  // reset
-  emailErr.textContent='';pwErr.textContent='';
-  email.classList.remove('err');pw.classList.remove('err');
-  banner.classList.remove('show');
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('pw').value;
 
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)){
-    email.classList.add('err');emailErr.textContent='Enter a valid email address.';ok=false;
-  }
-  if(!pw.value){
-    pw.classList.add('err');pwErr.textContent='Password is required.';ok=false;
-  }
+  const res = await fetch('/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  });
 
-  if(ok){
-    const btn=document.getElementById('submitBtn');
-    btn.disabled=true;btn.textContent='Signing in…';
+  const data = await res.json();
 
-    // simulate auth check
-    setTimeout(()=>{
-      // demo: treat test@manish.com / password123 as valid
-      const validEmail='test@manish.com', validPw='password123';
-      if(email.value===validEmail && pw.value===validPw){
-        btn.textContent='✓ Welcome back!';
-        btn.style.background='var(--success)';btn.style.color='#fff';
-      } else {
-        banner.classList.add('show');
-        btn.textContent='Sign in to Manish →';
-        btn.disabled=false;
-        email.classList.add('err');pw.classList.add('err');
-      }
-    },1400);
+  const banner = document.getElementById('banner');
+  const msg = document.getElementById('banner-msg');
+
+  if (!res.ok) {
+    banner.classList.add('show');
+    msg.textContent = data.message; 
+  } else {
+    msg.textContent = data.message;
+    banner.classList.add('show');
+    banner.style.background = "green";
+
+    setTimeout(() => {
+      window.location.href = "/dashboard";
+    }, 1000);
   }
 });
+
 </script>
 </body>
 </html>

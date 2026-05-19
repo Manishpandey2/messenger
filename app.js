@@ -51,7 +51,32 @@ app.post("/register", async (req, res) => {
 app.get("/login", (req, res) => {
   res.render("auth/login");
 });
-
+app.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await db.users.findOne({
+      where: {
+        email: email,
+      },
+    });
+    if (!user) {
+      return res.status(400).json({
+        message: "user not registered",
+      });
+    }
+    const isMatched = bcrypt.compareSync(password, user.password);
+    if (isMatched) {
+      return res.status(200).json({
+        message: "User Logged in Successfully",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
 app.listen(PORT, () => {
   console.log(`project has started at port ${PORT}`);
 });
